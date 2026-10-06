@@ -106,11 +106,13 @@ h1 .jp{font-weight:500;color:var(--ink-3);font-size:.55em;margin-left:.4em;lette
 .chip.cam{background:var(--cams);color:var(--ink);font-weight:500}
 .chip.cam .by{flex:none;font-size:9.5px;font-weight:700;color:#fff;background:var(--cam);border-radius:4px;padding:1px 4px;margin-top:1px;letter-spacing:.03em}
 .chip.cam a{color:var(--cam);font-weight:600}
+.more{display:none;font-size:9px;font-weight:600;color:var(--ink-3);padding-left:3px}
 .chip.note{background:transparent;color:var(--note);font-weight:500;font-style:italic;padding-inline:2px}
 
 /* list view */
 .list{display:flex;flex-direction:column;gap:10px}
 .li{background:var(--surface);border:1px solid var(--line-soft);border-radius:12px;padding:12px 14px;display:grid;grid-template-columns:64px 1fr;gap:14px;cursor:pointer;text-align:left;font:inherit;color:inherit;width:100%}
+.li.emptyday{padding-block:6px;opacity:.75}.li.emptyday .d b{font-size:18px}.li.emptyday .d em,.li.emptyday .here{display:none}
 .li:hover{border-color:var(--line)}
 .li .d{display:flex;flex-direction:column;align-items:flex-start;font-variant-numeric:tabular-nums}
 .li .d small{font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3)}
@@ -151,15 +153,19 @@ h1 .jp{font-weight:500;color:var(--ink-3);font-size:.55em;margin-left:.4em;lette
   .fgrid{min-height:92px;padding-bottom:6px}
   .bar{height:6px;padding:0;font-size:0}
   .bar.s{margin-left:3px}.bar.e{margin-right:3px}
-  .day{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:3px;padding:4px 2px 0}
-  .chip{width:8px;height:8px;padding:0;border-radius:50%;font-size:0;background:var(--c)}
-  .chip svg,.chip .by,.chip span{display:none}
-  .chip.joe{background:var(--joe)}
-  .chip.cam{background:var(--cam)}
-  .chip.cam{background:var(--cams);color:var(--ink);font-weight:500}
-.chip.cam .by{flex:none;font-size:9.5px;font-weight:700;color:#fff;background:var(--cam);border-radius:4px;padding:1px 4px;margin-top:1px;letter-spacing:.03em}
-.chip.cam a{color:var(--cam);font-weight:600}
-.chip.note{display:none}
+  .bar{height:7px}
+  .day{gap:2px;padding:3px 2px 0}
+  .day .chip{display:block;font-size:9.5px;line-height:1.3;padding:1px 3px;border-radius:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:600;background:var(--cs);color:var(--c)}
+  .day .chip > *{display:none}
+  .day .chip::after{content:attr(data-s)}
+  .day .chip.joe{background:var(--joes);color:var(--joe);font-weight:600}
+  .day .chip.cam{background:var(--cams);color:var(--cam);font-weight:600}
+  .day .chip.note{display:none}
+  .day .chip:nth-of-type(n+4){display:none}
+  .day .more{display:block}
+  .li{grid-template-columns:52px 1fr;gap:10px;padding:12px}
+  .li .chip{font-size:13px}
+  .drawer .chip{font-size:15px}
   .drawer{top:auto;left:0;width:100%;max-height:85%;border-radius:18px 18px 0 0}
 }
 @media (prefers-reduced-motion:no-preference){
@@ -221,7 +227,7 @@ const EV={
  '2026-11-14':[{t:'cam',x:'Jindai Botanical Garden (Chofu)',d:'Big lawns for the kids, autumn roses (the Rose Festival runs through Nov 23) and fall colors. The Aquatic Plant Garden next door has wetland boardwalks. Lunch at the soba shops by Jindaiji temple. Open 9:30–17:00. Adults ¥500, 65+ ¥250, elementary school and younger free. Bus from Keio Chofu Station.',u:'https://www.tokyo-park.or.jp/park/jindai/index.html'},{t:'joe',x:'Kakuuchi Festival (Ueno Park)'}],
  '2026-11-15':[{t:'joe',x:'Kakuuchi Festival (Ueno Park)'}],
  '2026-11-16':[{t:'note',x:'Jordan & the girls plan their own days (about Nov 16–22)'}],
- '2026-11-17':[{t:'joe',x:'Kanazawa day trip'}],
+ '2026-11-17':[{t:'cam',x:'Kanazawa trip · tentative, checking with Joe (day trip or overnight?)',d:'About 2.5 hrs each way on the Kagayaki from Tokyo Station. Standard fare ¥14,600 one way, or about ¥10,080 with the Eki-net Tokudane 14 fare if you book 14+ days ahead. Train + hotel packages start around ¥26,000 per person, so an overnight stay costs little more than a day trip and is much less rushed. Sights: Kenroku-en garden, Kanazawa Castle Park, the Nagamachi samurai district and Higashi Chaya geisha street, with gold-leaf ice cream. Lunch idea: jibu-ni (Kaga duck stew) or Kanazawa curry. Use the Loop Bus to save walking.',u:'https://www.eki-net.com/'},{t:'joe',x:'Kanazawa day trip'}],
  '2026-11-20':[{t:'cam',x:'Ghibli Museum (Mitaka) · Jordan, Ayanna, Gigi, Joe & Cathi',d:'Tickets are for a set date and entry time only, with no sales at the door. They go on sale Oct 10 at 10:00 JST on Lawson Ticket and sell out fast. Adults ¥1,000, ages 13–18 ¥700, 7–12 ¥400, 4–6 ¥100. Community bus from JR Mitaka Station, or walk through Inokashira Park from Kichijoji. Backup day: Thu Nov 19.',u:'https://l-tike.com/ghibli/'}],
  '2026-11-21':[{t:'joe',x:'Foods & Sake Fair'}],
  '2026-11-22':[{t:'cam',x:'Night kagura · 8:00 PM · Musashi Mitake Shrine (date to be confirmed)',d:'Free. Some dances are performed by firelight in front of the torii gate. About 2 hrs from home: JR Ome Line to Mitake, bus and cable car up, then a 25 min walk. The last cable car down is around 9:30 PM, so staying overnight at a shukubo on the mountain (from ¥8,800 per person, dinner and breakfast included) makes it easy. Nov 23 is a holiday. Bring warm layers.',u:'https://www.gotokyo.org/en/spot/ev053/index.html'},{t:'cam',x:'Overnight on Mt. Mitake at a shukubo (pilgrims’ inn)',d:'Top pick: Machiya (麻知家), right in front of the shrine gate, so it is a few steps home after the kagura. From ¥9,900 per person. Backup: Komadori Sanso (駒鳥山荘), from ¥8,800 with dinner and breakfast, 15 min walk from the shrine. Shops on the mountain close around 4 PM, so arrive early.',u:'https://baigo.fun/articles/syukubo-matome.html'},{t:'joe',x:'Foods & Sake Fair'},{t:'joe',x:'Asakusa + Tokyo Skytree'}],
@@ -263,7 +269,7 @@ const isHol=k=>(EV[k]||[]).some(e=>e.t==='hol');
 const fmtLong=k=>D(k).toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',timeZone:'UTC'});
 const fmtShort=k=>D(k).toLocaleDateString('en-US',{month:'short',day:'numeric',timeZone:'UTC'});
 
-function chip(e,full){
+function chip(e,full,nolink){
   const st=e.g?stayOf(e.g):null;
   if(e.t==='arr'||e.t==='dep'){
     return `<div class="chip" style="--c:var(${st.c});--cs:var(${st.c}s)">${PLANE}<span>${esc(e.x)}</span></div>`;
@@ -272,11 +278,19 @@ function chip(e,full){
   if(e.t==='bday')return `<div class="chip" style="--c:var(--bday);--cs:var(--bdays)">${CAKE}<span>${esc(e.x)}</span></div>`;
   if(e.t==='occ')return `<div class="chip" style="--c:var(--g2);--cs:var(--g2s)">${LEAF}<span>${esc(e.x)}</span></div>`;
   if(e.t==='note')return `<div class="chip note" style="--c:var(--note)"><span>${esc(e.x)}</span></div>`;
-  if(e.t==='cam')return `<div class="chip cam" style="--c:var(--cam)"><span class="by">CAMILLE</span><span>${esc(e.x)}${full&&e.d?`<br><span style="color:var(--ink-2)">${esc(e.d)}</span>`:''}${full&&e.u?`<br><a href="${e.u}" target="_blank" rel="noopener">Event page ↗</a>`:''}</span></div>`;
+  if(e.t==='cam')return `<div class="chip cam" style="--c:var(--cam)"><span class="by">CAMILLE</span><span>${esc(e.x)}${full&&e.d?`<br><span style="color:var(--ink-2)">${esc(e.d)}</span>`:''}${full&&e.u&&!nolink?`<br><a href="${e.u}" target="_blank" rel="noopener">Event page ↗</a>`:''}</span></div>`;
   if(e.t==='joe')return `<div class="chip joe" style="--c:var(--joe)"><span class="by">JOE</span><span>${esc(e.x)}</span></div>`;
   return '';
 }
 
+function shortLabel(e){
+  let t=e.x.split(' · ')[0];
+  if(e.t==='arr')t='✈ '+stayOf(e.g).name.split(',')[0].replace(' & ','&')+' in';
+  if(e.t==='dep')t='✈ '+(e.g?stayOf(e.g).name.split(',')[0].replace(' & ','&'):'')+' out';
+  if(e.t==='joe')t='J · '+t;
+  return t;
+}
+function gchip(e){return chip(e).replace('<div ',`<div data-s="${esc(shortLabel(e))}" `)}
 // who's here + legend
 $('#who').innerHTML=STAYS.map(s=>`<div class="person" style="--c:var(${s.c})"><div class="swatch"></div><div><b>${esc(s.name)}</b><div class="dates">${fmtShort(s.from)} – ${fmtShort(s.to)}</div><div class="fl">Arrive ${esc(s.arr)} · Leave ${esc(s.dep)}</div></div></div>`).join('');
 $('#legend').innerHTML=[
@@ -308,7 +322,7 @@ for(let w=0;w<5;w++){
     bg+=`<button type="button" class="cellbtn${out?' out':''}" data-k="${k}" aria-label="${fmtLong(k)}"${out&&!(EV[k]||[]).length?' tabindex="-1"':''}></button>`;
     fg+=`<div class="${cls}" style="grid-column:${i+1};grid-row:1"><b>${label}</b>${hol?'<span class="hj">祝</span>':''}${OFF.has(k)?OFFI:''}${dn?`<span class="dn">DAY ${dn}</span>`:''}</div>`;
     const list=evs(k);
-    if(list.length)fg+=`<div class="day" style="grid-column:${i+1};grid-row:${evRow}">${list.map(e=>chip(e)).join('')}</div>`;
+    if(list.length)fg+=`<div class="day" style="grid-column:${i+1};grid-row:${evRow}">${list.map(gchip).join('')}${list.filter(e=>e.t!=='note').length>3?`<div class="more">+${list.filter(e=>e.t!=='note').length-3} more</div>`:''}</div>`;
   });
   segs.forEach(g=>{
     const cls=['bar',g.st?'s':'cont',g.en?'e':''].join(' ');
@@ -329,7 +343,7 @@ for(let k=TRIP0;k<=TRIP1;k=iso(addDays(D(k),1))){
   if(w!==lastW){lastW=w;const ws=iso(addDays(start,w*7)),we=iso(addDays(start,w*7+6));lh+=`<div class="wk">Week of ${fmtShort(ws)} – ${fmtShort(we)}</div>`;}
   const list=evs(k),h=here(k),dn=dayNum(k);
   const cls=['d',dow===0?'sun':'',dow===6?'sat':'',isHol(k)?'hol':''].join(' ');
-  lh+=`<button type="button" class="li" data-k="${k}"><div class="${cls}"><small>${d.toLocaleDateString('en-US',{weekday:'short',timeZone:'UTC'})}</small><b>${d.getUTCDate()}</b>${dn?`<em>Day ${dn}</em>`:''}${OFF.has(k)?OFFI:''}<div class="here">${h.map(s=>`<i style="--c:var(${s.c})" title="${esc(s.name)}"></i>`).join('')}</div></div><div class="items">${list.length?list.map(e=>chip(e)).join(''):'<span class="empty">Open day</span>'}</div></button>`;
+  lh+=`<button type="button" class="li${list.length?'':' emptyday'}" data-k="${k}"><div class="${cls}"><small>${d.toLocaleDateString('en-US',{weekday:'short',timeZone:'UTC'})}</small><b>${d.getUTCDate()}</b>${dn?`<em>Day ${dn}</em>`:''}${OFF.has(k)?OFFI:''}<div class="here">${h.map(s=>`<i style="--c:var(${s.c})" title="${esc(s.name)}"></i>`).join('')}</div></div><div class="items">${list.length?list.map(e=>chip(e,e.t==='cam',true)).join(''):'<span class="empty">Open day</span>'}</div></button>`;
 }
 $('#listView').innerHTML=lh;
 
@@ -372,7 +386,7 @@ function setView(v){
 }
 $('#vMonth').onclick=()=>setView('month');$('#vList').onclick=()=>setView('list');
 let saved=null;try{saved=localStorage.getItem('tokyoView')}catch(_){}
-setView(saved||(window.innerWidth<560?'list':'month'));
+setView(window.innerWidth<700?'list':(saved||'month'));
 </script>
 
 </body>
